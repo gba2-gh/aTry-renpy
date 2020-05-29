@@ -1,11 +1,15 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
-While running game code:
-  File "game/script.rpy", line 12, in script call
-    call screen inicial
-  File "game/script.rpy", line 12, in script call
-    call screen inicial
-ScriptError: could not find label 'inicial'.
+After initialization, but before game start.
+  File "game/script.rpy", line 17, in prepare_screen
+    screen inicial():
+  File "game/script.rpy", line 17, in prepare
+    screen inicial():
+  File "game/script.rpy", line 22, in prepare
+    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
+  File "game/script.rpy", line 22, in prepare
+    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
+SyntaxError: invalid syntax (game/script.rpy, line 22)
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -14,19 +18,27 @@ Full traceback:
     renpy.main.main()
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 578, in main
     run(restart)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 143, in run
-    renpy.execution.run_context(True)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\execution.py", line 908, in run_context
-    context.run()
-  File "game/script.rpy", line 12, in script call
-    call screen inicial
-  File "game/script.rpy", line 12, in script call
-    call screen inicial
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\script.py", line 898, in lookup
-    raise ScriptError("could not find label '%s'." % str(original))
-ScriptError: could not find label 'inicial'.
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 94, in run
+    renpy.display.screen.prepare_screens()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 931, in prepare_screens
+    s.ast.prepare_screen()
+  File "game/script.rpy", line 17, in prepare_screen
+    screen inicial():
+  File "game/script.rpy", line 17, in prepare
+    screen inicial():
+  File "game/script.rpy", line 22, in prepare
+    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
+  File "game/script.rpy", line 22, in prepare
+    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\pyanalysis.py", line 703, in ast_eval
+    return self.ast_eval_literal(expr)[0]
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\pyanalysis.py", line 687, in ast_eval_literal
+    expr = py_compile(expr, 'eval', ast_node=True)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\python.py", line 692, in py_compile
+    raise e
+SyntaxError: invalid syntax (game/script.rpy, line 22)
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Thu May 28 23:49:52 2020
+Fri May 29 00:57:25 2020

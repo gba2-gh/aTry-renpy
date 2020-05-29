@@ -2,9 +2,8 @@
 errors listed below, and try again.
 
 
-File "game/functions.rpy", line 13: invalid syntax
-            else
-    
+File "game/script.rpy", line 22: is not terminated with a newline. (Check strings and parenthesis.)
+        textbutton "swap" ypos 400 action If(False, Function(swap_inventory, p_inventory, m1_inventory, apple, 1, None)
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Thu May 28 23:47:13 2020
+Fri May 29 00:48:32 2020

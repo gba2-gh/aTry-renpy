@@ -19,4 +19,4 @@ screen inicial():
     textbutton "inventory" action Show("mainInventory")
     textbutton "mesa 1" xpos 200 action Show("m1_inventory")
     textbutton "Remove from main inv" ypos 200 action Function(remove_inventory, p_inventory, apple, 1)
-    textbutton "swap" ypos 400 action Function(swap_inventory, p_inventory, m1_inventory, apple, 1)
+    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple)), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
