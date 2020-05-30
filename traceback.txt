@@ -1,15 +1,19 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 After initialization, but before game start.
-  File "game/script.rpy", line 17, in prepare_screen
-    screen inicial():
-  File "game/script.rpy", line 17, in prepare
-    screen inicial():
-  File "game/script.rpy", line 22, in prepare
-    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
-  File "game/script.rpy", line 22, in prepare
-    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
-SyntaxError: invalid syntax (game/script.rpy, line 22)
+  File "game/main_inventory.rpy", line 4, in analyze_screen
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 4, in analyze
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 4, in analyze
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 12, in analyze
+    for i in p_inventory:
+  File "game/main_inventory.rpy", line 12, in analyze
+    for i in p_inventory:
+  File "game/main_inventory.rpy", line 22, in analyze
+    if z%<4 != 0:
+SyntaxError: invalid syntax (game/main_inventory.rpy, line 22)
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -18,27 +22,31 @@ Full traceback:
     renpy.main.main()
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 578, in main
     run(restart)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 94, in run
-    renpy.display.screen.prepare_screens()
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 931, in prepare_screens
-    s.ast.prepare_screen()
-  File "game/script.rpy", line 17, in prepare_screen
-    screen inicial():
-  File "game/script.rpy", line 17, in prepare
-    screen inicial():
-  File "game/script.rpy", line 22, in prepare
-    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
-  File "game/script.rpy", line 22, in prepare
-    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple):), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\pyanalysis.py", line 703, in ast_eval
-    return self.ast_eval_literal(expr)[0]
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 86, in run
+    renpy.display.screen.analyze_screens()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 901, in analyze_screens
+    s.ast.analyze_screen()
+  File "game/main_inventory.rpy", line 4, in analyze_screen
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 4, in analyze
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 4, in analyze
+    screen mainInventory():
+  File "game/main_inventory.rpy", line 12, in analyze
+    for i in p_inventory:
+  File "game/main_inventory.rpy", line 12, in analyze
+    for i in p_inventory:
+  File "game/main_inventory.rpy", line 22, in analyze
+    if z%<4 != 0:
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\pyanalysis.py", line 533, in is_constant_expr
+    node, literal = ccache.ast_eval_literal(expr)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\pyanalysis.py", line 687, in ast_eval_literal
     expr = py_compile(expr, 'eval', ast_node=True)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\python.py", line 692, in py_compile
     raise e
-SyntaxError: invalid syntax (game/script.rpy, line 22)
+SyntaxError: invalid syntax (game/main_inventory.rpy, line 22)
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Fri May 29 00:57:25 2020
+Fri May 29 23:05:00 2020
