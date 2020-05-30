@@ -2,10 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/functions.rpy", line 33: invalid syntax
-            vbox:
-                 ^
+File "game/functions.rpy", line 11: expected an indented block
+            inv.append([item, qty])
+               ^
     
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Fri May 29 23:28:03 2020
+Sat May 30 02:28:20 2020

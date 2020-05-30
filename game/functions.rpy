@@ -2,7 +2,17 @@
 
 init python:
     def add_inventory(inv, item, qty):
-        inv.append([item, qty])
+        if item.stack == True:
+            if (isin_inventory(inv, item)):
+                for i in inv:
+                    if i[0].name == item.name:
+                        i[1] += qty
+            else:
+                inv.append([item, qty])
+        else:
+            inv.append([item, qty])
+
+
 
     def remove_inventory(inv, item, qty):
         for i in inv:

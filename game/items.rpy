@@ -8,8 +8,8 @@ init -2 python:
 init -2 python:
     all_items=[]
     class item(store.object):
-        #nombre, fancy name, tipo, descripcion, imagen, precio base, precio real, comerciable
-        def __init__(self, name, fname, info, type,  img= "", bprice =0, rprice=0, com=True, qty=0):
+        #nombre, fancy name, tipo, descripcion, imagen, precio base, precio real, comerciable, apilable
+        def __init__(self, name, fname, info, type,  img= "", bprice =0, rprice=0, com=True, stack = True):
             global all_items
             self.name = name
             self.fname = fname
@@ -19,7 +19,7 @@ init -2 python:
             self.bprice = bprice
             self.rprice = rprice
             self.com = True
-            self.qty=qty
+            self.stack=stack
             if self not in all_items:
                 all_items.append(self)
 
