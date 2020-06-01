@@ -1,22 +1,22 @@
-Sat May 30 03:06:41 2020
+Mon Jun 01 18:20:21 2020
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
  
 
-Bootstrap to the start of init.init took 0.13s
+Bootstrap to the start of init.init took 0.11s
 Early init took 0.00s
-Loader init took 0.02s
+Loader init took 0.01s
 Loading error handling took 0.03s
-Loading script took 0.16s
-Loading save slot metadata. took 0.01s
+Loading script took 0.17s
+Loading save slot metadata. took 0.02s
 Loading persistent took 0.00s
 Importing _renpysteam: ImportError('No module named _renpysteam',)
 Running init code took 0.08s
-Loading analysis data took 0.06s
+Loading analysis data took 0.07s
 Analyze and compile ATL took 0.00s
 Index archives took 0.00s
 Backing up script files to 'C:\\Users\\Gba\\AppData\\Roaming/RenPy/backups\\aTry':
-Dump and make backups. took 0.10s
+Dump and make backups. took 0.09s
 Cleaning cache took 0.00s
 Making clean stores took 0.00s
 Initial gc. took 0.02s
@@ -27,9 +27,9 @@ Init translation took 0.03s
 Build styles took 0.01s
 Load screen analysis took 0.00s
 Analyze screens took 0.02s
-Save screen analysis took 0.10s
-Prepare screens took 0.09s
-Save pyanalysis. took 0.16s
+Save screen analysis took 0.11s
+Prepare screens took 0.10s
+Save pyanalysis. took 0.23s
 Save bytecode. took 0.08s
 Running _start took 0.00s
 Performance test:
@@ -446,11 +446,71 @@ Texture testing:
 - 2048px textures work.
 Root FBO is: 0
 FBO Maximum Texture Size: 2048
-Total time until interface ready: 1.80199980736s
+Total time until interface ready: 1.80700016022s
 - Target is 5 frames in 0.333333333333 seconds.
 - Frame drawn at 0.000000 seconds.
-- Frame drawn at 0.018667 seconds.
 - Frame drawn at 0.019667 seconds.
-- Frame drawn at 0.026667 seconds.
-- Frame drawn at 0.043667 seconds.
-- 0.043667 seconds to render 5 frames.
+- Frame drawn at 0.020667 seconds.
+- Frame drawn at 0.021667 seconds.
+- Frame drawn at 0.037667 seconds.
+- 0.037667 seconds to render 5 frames.
+
+Full traceback:
+  File "game/script.rpy", line 19, in script
+    call screen inicial
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1949, in execute
+    self.call("execute")
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1937, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\statements.py", line 277, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\exports.py", line 2905, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ui.py", line 297, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 434, in visit_all
+    self.child.visit_all(callback, seen=None)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 543, in visit_all
+    callback(self)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 857, in per_interact
+    if self.is_selected():
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 845, in is_selected
+    return is_selected(self.action)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 391, in is_selected
+    return action.get_selected()
+  File "renpy/common/00action_data.rpy", line 79, in get_selected
+    return __get_field(self.object, self.field, self.kind) == self.value
+  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
+    raise NameError("The {} {} does not exist.".format(kind, name))
+NameError: The variable qty does not exist.
+
+While running game code:
+  File "game/script.rpy", line 19, in script
+    call screen inicial
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/common/00action_data.rpy", line 79, in get_selected
+    return __get_field(self.object, self.field, self.kind) == self.value
+  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
+    raise NameError("The {} {} does not exist.".format(kind, name))
+NameError: The variable qty does not exist.

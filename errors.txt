@@ -2,10 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/functions.rpy", line 11: expected an indented block
-            inv.append([item, qty])
-               ^
-    
+File "game/main_inventory.rpy", line 40: end of line expected.
+    if inv_id==0:RR
+                 ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Sat May 30 02:28:20 2020
+Mon Jun 01 15:45:56 2020

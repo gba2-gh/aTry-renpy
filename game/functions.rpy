@@ -1,3 +1,4 @@
+#renpy
 #functions
 
 init python:

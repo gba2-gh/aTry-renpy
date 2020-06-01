@@ -1,30 +1,68 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 10, in script
-    $add_inventory(p_inventory, fish, 3)
-  File "game/script.rpy", line 10, in <module>
-    $add_inventory(p_inventory, fish, 3)
-  File "game/functions.rpy", line 5, in add_inventory
-    if item.stack == true:
-NameError: global name 'true' is not defined
+  File "game/script.rpy", line 19, in script
+    call screen inicial
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "renpy/common/00action_data.rpy", line 79, in get_selected
+    return __get_field(self.object, self.field, self.kind) == self.value
+  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
+    raise NameError("The {} {} does not exist.".format(kind, name))
+NameError: The variable qty does not exist.
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 10, in script
-    $add_inventory(p_inventory, fish, 3)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 914, in execute
-    renpy.python.py_exec_bytecode(self.code.bytecode, self.hide, store=self.store)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\python.py", line 2028, in py_exec_bytecode
-    exec bytecode in globals, locals
-  File "game/script.rpy", line 10, in <module>
-    $add_inventory(p_inventory, fish, 3)
-  File "game/functions.rpy", line 5, in add_inventory
-    if item.stack == true:
-NameError: global name 'true' is not defined
+  File "game/script.rpy", line 19, in script
+    call screen inicial
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1949, in execute
+    self.call("execute")
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1937, in call
+    return renpy.statements.call(method, parsed, *args, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\statements.py", line 277, in call
+    return method(parsed, *args, **kwargs)
+  File "renpy/common/000statements.rpy", line 531, in execute_call_screen
+    store._return = renpy.call_screen(name, *args, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\exports.py", line 2905, in call_screen
+    rv = renpy.ui.interact(mouse="screen", type="screen", roll_forward=roll_forward)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ui.py", line 297, in interact
+    rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
+    repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 434, in visit_all
+    self.child.visit_all(callback, seen=None)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 543, in visit_all
+    callback(self)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 857, in per_interact
+    if self.is_selected():
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 845, in is_selected
+    return is_selected(self.action)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 391, in is_selected
+    return action.get_selected()
+  File "renpy/common/00action_data.rpy", line 79, in get_selected
+    return __get_field(self.object, self.field, self.kind) == self.value
+  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
+    raise NameError("The {} {} does not exist.".format(kind, name))
+NameError: The variable qty does not exist.
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Sat May 30 02:28:35 2020
+Mon Jun 01 18:20:25 2020

@@ -9,11 +9,12 @@ define e = Character("Eileen")
 
 
 label start:
-    $p_inventory =[] #player inventory
-    $m1_inventory =[] #mesa1
+    $storage_list =[] #player inventory
+    $inventory_m1 =[[apple, 3]] #mesa1
+    $inventory_m2 =[]
 
-    $p_inventory=[[apple,2], [egg, 1], [egg, 1], [egg, 1]]
-    $add_inventory(p_inventory, fish, 3)
+    $storage_list=[[apple,9], [egg, 1], [egg, 1], [egg, 1]]
+    $add_inventory(storage_list, fish, 3)
 
     call screen inicial
 
@@ -24,5 +25,5 @@ screen inicial():
     add "images/main_scene.png"
     textbutton "inventory" action Show("inventory_main")
     textbutton "mesa 1" xpos 200 action [Show("inventory_m1")]
-    textbutton "Remove from main inv" ypos 200 action Function(remove_inventory, p_inventory, apple, 1)
-    textbutton "swap" ypos 400 action [SensitiveIf(isin_inventory(p_inventory, apple)), Function(swap_inventory, p_inventory, m1_inventory, apple, 1)]
+    textbutton "mesa 2" xpos 350 action [Show("inventory_m2")]
+    textbutton "Remove from main inv" ypos 200 action Function(remove_inventory, storage_list, apple, 1)
