@@ -5,7 +5,7 @@ While running game code:
     call screen inicial
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-Exception: Required parameter item has no value.
+TypeError: unbound method get_tooltip() must be called with Hide instance as first argument (got nothing instead)
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -26,29 +26,23 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
-    callback(self)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
-    root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
-    self.update()
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
-    self.screen.function(**self.scope)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 158, in apply_arguments
-    return parameters.apply(args, kwargs, ignore_errors)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 122, in apply
-    raise Exception("Required parameter %s has no value." % name)
-Exception: Required parameter item has no value.
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3234, in interact_core
+    renpy.display.focus.mouse_handler(None, x, y, default=False)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 407, in mouse_handler
+    return change_focus(new_focus, default=default)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 362, in change_focus
+    set_focused(current, newfocus.arg, newfocus.screen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 109, in set_focused
+    new_tooltip = widget._get_tooltip()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 749, in _get_tooltip
+    return get_tooltip(self.action)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 363, in get_tooltip
+    rv = get_tooltip(i)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 373, in get_tooltip
+    return func()
+TypeError: unbound method get_tooltip() must be called with Hide instance as first argument (got nothing instead)
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Mon Jun 01 19:08:15 2020
+Mon Jun 01 19:27:54 2020

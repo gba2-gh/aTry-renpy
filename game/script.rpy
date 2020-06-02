@@ -20,10 +20,18 @@ label start:
 
     return
 
+label store_closed:
+    "The store has been closed for the day"
+    jump start
 
 screen inicial():
     add "images/main_scene.png"
-    textbutton "inventory" action Show("inventory_main")
+    textbutton "Storage" action [Show("inventory_main"),Show("display_storage")]
     textbutton "mesa 1" xpos 200 action [Show("inventory_m1")]
     textbutton "mesa 2" xpos 350 action [Show("inventory_m2")]
+    textbutton "Open Store!" xpos 550 action [Show("store_open"), Notify("The store is open")]
     textbutton "Remove from main inv" ypos 200 action Function(remove_inventory, storage_list, apple, 1)
+
+screen store_open:
+    timer 20 repeat False action [Jump("store_closed")]
+    timer 8 repeat False action [Notify("Client arrived")]

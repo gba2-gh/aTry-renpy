@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/main_inventory.rpy", line 16: u'w' is not a keyword argument or valid child for the for statement.
-    w=item[0]
-     ^
+File "game/script.rpy", line 25: expected ':' not found.
+    label start
+               ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jun 01 19:07:27 2020
+Mon Jun 01 20:44:06 2020
