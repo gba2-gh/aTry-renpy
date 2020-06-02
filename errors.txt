@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/main_inventory.rpy", line 40: end of line expected.
-    if inv_id==0:RR
-                 ^
+File "game/main_inventory.rpy", line 16: u'w' is not a keyword argument or valid child for the for statement.
+    w=item[0]
+     ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jun 01 15:45:56 2020
+Mon Jun 01 19:07:27 2020

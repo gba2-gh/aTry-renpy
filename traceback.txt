@@ -5,11 +5,7 @@ While running game code:
     call screen inicial
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "renpy/common/00action_data.rpy", line 79, in get_selected
-    return __get_field(self.object, self.field, self.kind) == self.value
-  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
-    raise NameError("The {} {} does not exist.".format(kind, name))
-NameError: The variable qty does not exist.
+Exception: Required parameter item has no value.
 
 -- Full Traceback ------------------------------------------------------------
 
@@ -38,31 +34,21 @@ Full traceback:
     d.visit_all(callback, seen)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
     d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 434, in visit_all
-    self.child.visit_all(callback, seen=None)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
-    d.visit_all(callback, seen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 543, in visit_all
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
     callback(self)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
     root_widget.visit_all(lambda i : i.per_interact())
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 857, in per_interact
-    if self.is_selected():
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 845, in is_selected
-    return is_selected(self.action)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 391, in is_selected
-    return action.get_selected()
-  File "renpy/common/00action_data.rpy", line 79, in get_selected
-    return __get_field(self.object, self.field, self.kind) == self.value
-  File "renpy/common/00action_data.rpy", line 39, in _m1_00action_data__get_field
-    raise NameError("The {} {} does not exist.".format(kind, name))
-NameError: The variable qty does not exist.
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
+    self.update()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 158, in apply_arguments
+    return parameters.apply(args, kwargs, ignore_errors)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 122, in apply
+    raise Exception("Required parameter %s has no value." % name)
+Exception: Required parameter item has no value.
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Mon Jun 01 18:20:25 2020
+Mon Jun 01 19:08:15 2020
