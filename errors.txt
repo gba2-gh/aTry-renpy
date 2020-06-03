@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 25: expected ':' not found.
-    label start
-               ^
+File "game/script.rpy", line 57: u'S' is not a keyword argument or valid child for the text statement.
+    text "Requests: [requests]" ypos 200S
+                                         ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Mon Jun 01 20:44:06 2020
+Wed Jun 03 01:17:11 2020

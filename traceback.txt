@@ -1,17 +1,25 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 19, in script
-    call screen inicial
+  File "game/store.rpy", line 28, in script
+    call screen store_open
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-TypeError: unbound method get_tooltip() must be called with Hide instance as first argument (got nothing instead)
+  File "game/script.rpy", line 31, in execute
+    screen store_open:
+  File "game/script.rpy", line 31, in execute
+    screen store_open:
+  File "game/script.rpy", line 37, in execute
+    timer 1 repeat True action  SetVariable( "requests", If(request_petition(clients_girl[1] * 3),  requests +1, requests))
+  File "game/script.rpy", line 37, in keywords
+    timer 1 repeat True action  SetVariable( "requests", If(request_petition(clients_girl[1] * 3),  requests +1, requests))
+TypeError: 'int' object has no attribute '__getitem__'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/script.rpy", line 19, in script
-    call screen inicial
+  File "game/store.rpy", line 28, in script
+    call screen store_open
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1949, in execute
     self.call("execute")
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1937, in call
@@ -26,23 +34,34 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3234, in interact_core
-    renpy.display.focus.mouse_handler(None, x, y, default=False)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 407, in mouse_handler
-    return change_focus(new_focus, default=default)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 362, in change_focus
-    set_focused(current, newfocus.arg, newfocus.screen)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\focus.py", line 109, in set_focused
-    new_tooltip = widget._get_tooltip()
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 749, in _get_tooltip
-    return get_tooltip(self.action)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 363, in get_tooltip
-    rv = get_tooltip(i)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 373, in get_tooltip
-    return func()
-TypeError: unbound method get_tooltip() must be called with Hide instance as first argument (got nothing instead)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
+    callback(self)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
+    self.update()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "game/script.rpy", line 31, in execute
+    screen store_open:
+  File "game/script.rpy", line 31, in execute
+    screen store_open:
+  File "game/script.rpy", line 37, in execute
+    timer 1 repeat True action  SetVariable( "requests", If(request_petition(clients_girl[1] * 3),  requests +1, requests))
+  File "game/script.rpy", line 37, in keywords
+    timer 1 repeat True action  SetVariable( "requests", If(request_petition(clients_girl[1] * 3),  requests +1, requests))
+  File "<screen language>", line 37, in <module>
+TypeError: 'int' object has no attribute '__getitem__'
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Mon Jun 01 19:27:54 2020
+Wed Jun 03 00:59:35 2020
