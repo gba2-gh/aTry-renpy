@@ -7,7 +7,7 @@ init python:
     def add_inventory(inv, item, qty):
         if item.stack == True:
             if (isin_inventory(inv, item)):
-                for i in inv:
+                for i in inv[1:]:
                     if i[0].name == item.name:
                         i[1] += qty
             else:
@@ -18,14 +18,14 @@ init python:
 
 
     def remove_inventory(inv, item, qty):
-        for i in inv:
+        for i in inv[1:]:
             if( item in i):
                 i[1] -= qty #excepcion para qty> i
                 if(i[1] <=0):
                     del inv[inv.index(i)]
 
     def isin_inventory(inv, item):
-        for i in inv:
+        for i in inv[1:]:
             if item in i:
                 return True
         return False
@@ -48,6 +48,7 @@ init python:
             #TODO request()
         else:
             return False
+
     def enter_shop_prob_func(shopper):
         if shopper.fav_turn == current_turn :
             prob_turn = 1

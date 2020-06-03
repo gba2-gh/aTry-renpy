@@ -2,9 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/script.rpy", line 57: u'S' is not a keyword argument or valid child for the text statement.
-    text "Requests: [requests]" ypos 200S
-                                         ^
+File "game/store.rpy", line 72: invalid syntax
+        renpy.textbutton "uno" xpos 500 ypos 500  action Hide("shop_request")
+                              ^
+    
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Jun 03 01:17:11 2020
+Wed Jun 03 13:59:24 2020

@@ -12,7 +12,7 @@ screen inventory_text(item, info): #Despliega informaciòn sobre los objetos
 screen inventory_display(inv_s, inv_r , max, xcord, ycord ): #Despliega los objetos en la lista del inventario(inventario, maximos espacios en el grid de la gui, cordx, cordy)
 
     $z=0
-    for item in inv_s:
+    for item in inv_s[1:]:
         $fname= item[0].fname
         $qty = item[1]
         $idle_img = item[0].img
@@ -35,7 +35,7 @@ screen display_storage():
     $z=0
     $xcord=160
     $ycord=85
-    for item in storage_list:
+    for item in storage_list[1:]:
         $fname= item[0].fname
         $qty = item[1]
         $idle_img = item[0].img
