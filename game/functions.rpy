@@ -60,3 +60,31 @@ init python:
         enter_shop_prob = shopper.trust *(trust_weight) + store_reputation * (store_reputation_weight) + prob_turn * (prob_turn_weight) + objectsFav_prob * (objectsFav_prob_weight)
         enter_shop_prob *= (25 + random.randint(0,3) - random.randint(0,3) )
         return enter_shop_prob
+
+    def search_for_items(shopper, inventory):
+        items=[]
+        for item_i in shopper.fav_items:
+            for item_j in inventory[1:]:
+                if item_i == item_j[0]:
+                    items.append([item_j[0],inventory[0]])  #inventory[0] ==id
+
+        return items
+
+    def get_shopper_state(shopper):
+        rand = random.randint(0,100)
+        items_to_choose =[]
+        if rand <= 70:#compra
+            items_to_choose += search_for_items(shopper,inventory_m1)
+            items_to_choose += search_for_items(shopper,inventory_m2)
+
+            if len(items_to_choose) > 0:
+                item_picked= random.choice(items_to_choose)
+                return 0 #Comprar
+            else:
+                return 1 #Pedir
+        elif 70 < rand <= 80:
+            return 1 #Pedir
+        elif 80 < rand <= 90:
+            return 2 #Vender
+        elif 90 < rand <= 100:
+            return 3 #Encargo

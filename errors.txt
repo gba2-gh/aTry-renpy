@@ -2,10 +2,10 @@
 errors listed below, and try again.
 
 
-File "game/store.rpy", line 72: invalid syntax
-        renpy.textbutton "uno" xpos 500 ypos 500  action Hide("shop_request")
-                              ^
+File "game/functions.rpy", line 82: invalid syntax
+                return flag = 0
+                             ^
     
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Jun 03 13:59:24 2020
+Wed Jun 03 16:56:29 2020

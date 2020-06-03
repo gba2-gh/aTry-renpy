@@ -1,6 +1,7 @@
 #renpy
 #store mechanics and IA
 init -2 python:
+
     import random
 
 define current_turn = 0
@@ -15,6 +16,9 @@ define clients_boy = 0
 define clients_lad = 0
 define clients_gal = 0
 define requests = 0
+define shopper_state = 0
+define item_picked = 0
+
 
 
 label store_open:
@@ -36,7 +40,7 @@ screen store_open:
     text "Prob: [enter_shop_prob_girl]%"
     timer 1 repeat True action  SetVariable( "time_elapsed", time_elapsed +1)
 
-    timer 1 repeat True action  SetVariable( "clients_girl", If(client_enter_shop(enter_shop_prob_girl[1]),  clients_girl +1, clients_girl))
+    timer 1 repeat True action  SetVariable( "clients_girl", If(client_enter_shop(100),  clients_girl +1, clients_girl))
     timer 1.1 repeat True action If(request_petition(clients_girl * 3),  [Show("shop_request", shopper=girl_shopper),SetVariable("requests",  requests +1)] , NullAction() )
     # timer 1 repeat True action  SetVariable( "clients_boy", If(client_enter_shop(enter_shop_prob_girl[2]),  clients_boy +1, clients_boy))
     # timer 1.2 repeat True action  SetVariable( "requests", If(request_petition(clients_boy * 3),  requests +1, requests))
@@ -55,20 +59,21 @@ screen store_open:
 
 
 screen shop_request(shopper):
-    python:
-        rand = random.randint(1,101)
-        items_to_buy =[]
-        if rand < 100:#comprar
-            for item_i in shopper.fav_items:
-                for item_j in inventory_on_sale:
-                    if item_i == item_j[0]:
-                        items_to_buy.append(item_j[0])
 
-            if len(items_to_buy) > 0:
-                item_to_buy=random.choice(items_to_buy)
-                flag = "found"
-            else:
-                flag= "not found"
-                #TODO pedir()
+    $shopper_state= get_shopper_state(shopper)
 
-    textbutton "[item_to_buy.fname]" xpos 500 ypos 500  action Hide("shop_request")
+    if shopper_state == 0:#comprar
+        $item = item_picked[0].fname
+        $mesa= item_picked[1]
+        if mesa == 1:
+            textbutton "[item]: [mesa] : buy" xpos 500 ypos 500  action Hide("shop_request")
+        if mesa == 2:
+            textbutton "[item]: [mesa] : buy" xpos 800 ypos 500  action Hide("shop_request")
+    elif shopper_state == 1:#Pedir
+        textbutton " pedir" xpos 500 ypos 800  action Hide("shop_request")
+    elif shopper_state == 2:#Vender
+        textbutton "vender " xpos 700 ypos 800  action Hide("shop_request")
+    elif shopper_state == 3:#Hacer encargo
+        textbutton "encargo " xpos 900 ypos 800  action Hide("shop_request")
+
+#screen store_buy():

@@ -1,35 +1,27 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/script.rpy", line 21, in script
-    call screen inicial
-  File "game/script.rpy", line 21, in script
-    call screen inicial
+  File "game/store.rpy", line 32, in script
+    call screen store_open
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "renpy/common/00action_other.rpy", line 537, in __call__
-    rv = self.callable(*self.args, **self.kwargs)
-  File "game/functions.rpy", line 36, in swap_inventory
-    add_inventory(inv_r, item, qty)#excepcion para que quepa en inv_r
-  File "game/functions.rpy", line 11, in add_inventory
-    if i[0].name == item.name:
-TypeError: 'int' object has no attribute '__getitem__'
+  File "game/store.rpy", line 59, in execute
+    screen shop_request(shopper):
+  File "game/store.rpy", line 59, in execute
+    screen shop_request(shopper):
+  File "game/store.rpy", line 81, in execute
+    if flag == 0:
+  File "game/store.rpy", line 82, in execute
+    $item = item_picked[0].fname
+  File "game/store.rpy", line 82, in <module>
+    $item = item_picked[0].fname
+NameError: name 'item_picked' is not defined
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\bootstrap.py", line 316, in bootstrap
-    renpy.main.main()
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 578, in main
-    run(restart)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\main.py", line 143, in run
-    renpy.execution.run_context(True)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\execution.py", line 908, in run_context
-    context.run()
-  File "game/script.rpy", line 21, in script
-    call screen inicial
-  File "game/script.rpy", line 21, in script
-    call screen inicial
+  File "game/store.rpy", line 32, in script
+    call screen store_open
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1949, in execute
     self.call("execute")
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1937, in call
@@ -44,35 +36,35 @@ Full traceback:
     rv = renpy.game.interface.interact(roll_forward=roll_forward, **kwargs)
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 2702, in interact
     repeat, rv = self.interact_core(preloads=preloads, trans_pause=trans_pause, **kwargs)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3518, in interact_core
-    rv = root_widget.event(ev, x, y, 0)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\layout.py", line 998, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\layout.py", line 998, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\layout.py", line 998, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 714, in event
-    rv = self.child.event(ev, x, y, st)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\layout.py", line 998, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\layout.py", line 998, in event
-    rv = i.event(ev, x - xo, y - yo, cst)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 962, in event
-    return handle_click(self.clicked)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 897, in handle_click
-    rv = run(action)
-  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\behavior.py", line 320, in run
-    return action(*args, **kwargs)
-  File "renpy/common/00action_other.rpy", line 537, in __call__
-    rv = self.callable(*self.args, **self.kwargs)
-  File "game/functions.rpy", line 36, in swap_inventory
-    add_inventory(inv_r, item, qty)#excepcion para que quepa en inv_r
-  File "game/functions.rpy", line 11, in add_inventory
-    if i[0].name == item.name:
-TypeError: 'int' object has no attribute '__getitem__'
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in interact_core
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 541, in visit_all
+    d.visit_all(callback, seen)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 430, in visit_all
+    callback(self)
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\core.py", line 3094, in <lambda>
+    root_widget.visit_all(lambda i : i.per_interact())
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 440, in per_interact
+    self.update()
+  File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
+    self.screen.function(**self.scope)
+  File "game/store.rpy", line 59, in execute
+    screen shop_request(shopper):
+  File "game/store.rpy", line 59, in execute
+    screen shop_request(shopper):
+  File "game/store.rpy", line 81, in execute
+    if flag == 0:
+  File "game/store.rpy", line 82, in execute
+    $item = item_picked[0].fname
+  File "game/store.rpy", line 82, in <module>
+    $item = item_picked[0].fname
+NameError: name 'item_picked' is not defined
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Wed Jun 03 14:52:44 2020
+Wed Jun 03 16:44:01 2020
