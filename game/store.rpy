@@ -5,69 +5,66 @@ init -2 python:
     import random
 
 define current_turn = 0
-define trust_weight = 1
 define store_reputation = 0.1
-define store_reputation_weight = 1
 define objectsFav_prob = 0.5
-define objectsFav_prob_weight = 1
-define prob_turn_weight = 1
-define clients_girl = 0
-define clients_boy = 0
-define clients_lad = 0
-define clients_gal = 0
+
 define requests = 0
 define shopper_states = []
-define item_picked = 0
-
+define enter_shop_prob=[]
+define clients =[]
+define time_elapsed =0
 
 
 
 label store_open:
+    python:
+        #reset variables
+        del clients[:]
+        del enter_shop_prob[:]
+        del shopper_states[:]
+        requests = 0
+        time_elapsed = 0
+        #Crear lista con la probabilidad de que cada tipo de comprador entre a la tienda
+        ##for shopper in all_shoppers: ##BUG STORE.SHOPPER
+        enter_shop_prob.append(enter_shop_prob_func(girl_shopper))
+        clients.append(0)
+    #"brake"
 
-python:
-    enter_shop_prob_girl=[]
-    for i in range(11):
-        enter_shop_prob_girl.append(enter_shop_prob_func(girl_shopper))
+label clients_requests:
+    python:
+        for i in range(len(enter_shop_prob)):
+            if client_enter_shop(enter_shop_prob[i] ):
+                clients[i] +=1
+
+        for i in range(len(clients)):
+            if request_petition(clients[i] * 3):
+                shopper_states.append(get_shopper_state(all_shoppers[i]))
+                requests +=1
+        time_elapsed +=1
+
+    call screen store_open_screen
 
 
-#$enter_shop_prob_girl =  enter_shop_prob_func(girl_shopper)
+screen store_open_screen():
 
-call screen store_open
-
-
-screen store_open:
-
-
-    text "Prob: [enter_shop_prob_girl]%"
-    timer 1 repeat True action  SetVariable( "time_elapsed", time_elapsed +1)
-
-    timer 1 repeat True action  SetVariable( "clients_girl", If(client_enter_shop(enter_shop_prob_girl[1] ),  clients_girl +1, clients_girl))
-    timer 1.1 repeat True action If(request_petition(clients_girl * 3),  [AddToSet(shopper_states, get_shopper_state(girl_shopper)) ,SetVariable("requests",  requests +1)] , NullAction() )
-    # timer 1 repeat True action  SetVariable( "clients_boy", If(client_enter_shop(enter_shop_prob_girl[2]),  clients_boy +1, clients_boy))
-    # timer 1.2 repeat True action  SetVariable( "requests", If(request_petition(clients_boy * 3),  requests +1, requests))
-    # timer 1 repeat True action  SetVariable( "clients_lad", If(client_enter_shop(enter_shop_prob_girl[3]),  clients_lad +1, clients_lad))
-    # timer 1.3 repeat True action  SetVariable( "requests", If(request_petition(clients_lad * 3),  requests +1, requests))
-    # timer 1 repeat True action  SetVariable( "clients_gal", If(client_enter_shop(enter_shop_prob_girl[5]),  clients_gal +1, clients_gal))
-    # timer 1.4 repeat True action  SetVariable( "requests", If(request_petition(clients_gal * 3),  requests +1, requests))
+    timer 1 repeat True action Call("clients_requests")
 
     use shop_request(shopper_states)
-    text "Clients: [clients_girl]" ypos 100 xpos
-    text "Clients: [clients_boy]" ypos 100 xpos 300
-    text "Clients: [clients_lad]" ypos 100 xpos 600
-    text "Clients: [clients_gal]" ypos 100 xpos 900
+
+    text "Prob: [enter_shop_prob]%"
+    text "Clients: [clients]" ypos 100 xpos
     text "Requests: [requests]" ypos 200
     text "Timer: [time_elapsed]" xpos 1700
+    text "shoppers: [lenn] " ypos 800
     text "states: [shopper_states]" ypos 900
-    text "states: [inventory_m1]" ypos 1000
-
-
+    text "inv_m1: [inventory_m1]" ypos 1000
+    textbutton "Close" xpos 1700 ypos 300 action [Jump("start")]
 
 screen shop_request(shopper_states):
     $xcord = 500
     $ycord =800
     for state in shopper_states:
         if state[0] == 1:#comprar
-            #$remove_inventory_id(state[2][1], state[2][0], 1)
             $item_name = state[2][0].fname
             $shelf= state[2][1]
             if shelf == 1:

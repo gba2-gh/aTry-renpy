@@ -4,20 +4,19 @@
 #Of course, this is a double-edged sword, with a lot of beginners creating content most of the game sthat come out of it are, to be blunt,
 #really bad
 
+init:
+    $storage_list =[] #player inventory
+    $inventory_m1 =[1] #mesa1, primer elemento identifica la lista
+    $inventory_m2 =[2]
+    
+    $storage_list=[0, [apple,9], [egg, 1], [egg, 1], [egg, 1]]
+    $add_inventory(storage_list, fish, 3)
+    $add_inventory(inventory_m1, apple, 50)
 
 define e = Character("Eileen")
 define time_elapsed=0
 
 label start:
-    $storage_list =[] #player inventory
-    $inventory_m1 =[1] #mesa1, primer elemento identifica la lista
-    $inventory_m2 =[2]
-
-    $storage_list=[0, [apple,9], [egg, 1], [egg, 1], [egg, 1]]
-    $add_inventory(storage_list, fish, 3)
-    $add_inventory(inventory_m1, apple, 2)
-    #$inventory_on_sale = inventory_m1 + inventory_m2
-
     call screen inicial
 
     return

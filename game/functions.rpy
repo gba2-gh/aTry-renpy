@@ -56,6 +56,11 @@ init python:
             return False
 
     def enter_shop_prob_func(shopper):
+        trust_weight = 1
+        store_reputation_weight = 1
+        objectsFav_prob_weight = 1
+        prob_turn_weight = 1
+
         if shopper.fav_turn == current_turn :
             prob_turn = 1
         elif shopper.fav_turn == current_turn -1 or shopper.fav_turn == current_turn +1:
@@ -82,10 +87,9 @@ init python:
         if rand <= 70:#compra
             items_to_choose += search_for_items(shopper,inventory_m1)
             items_to_choose += search_for_items(shopper,inventory_m2)
-            #items_to_choose += [[apple, 1], [apple, 2]]
             if len(items_to_choose) > 0:
                 item_picked= random.choice(items_to_choose)
-                #remove_inventory_id(item_picked[1], item_picked[0], 1)
+                remove_inventory_id(item_picked[1], item_picked[0], 1)
                 return [1, shopper, item_picked] #Comprar
             else:
                 return [0]
