@@ -74,17 +74,16 @@ init python:
         rand = random.randint(0,100)
         items_to_choose =[]
         if rand <= 70:#compra
-            items_to_choose += search_for_items(shopper,inventory_m1)
-            items_to_choose += search_for_items(shopper,inventory_m2)
-
-            if len(items_to_choose) > 0:
-                item_picked= random.choice(items_to_choose)
-                return 0 #Comprar
-            else:
-                return 1 #Pedir
+            # items_to_choose += search_for_items(shopper,inventory_m1)
+            # items_to_choose += search_for_items(shopper,inventory_m2)
+            # if len(items_to_choose) > 0:
+            #     item_picked= random.choice(items_to_choose)
+            return [1, shopper] #Comprar
+            # else:
+            #     return [2, shopper]#Pedir
         elif 70 < rand <= 80:
-            return 1 #Pedir
+            return [2, shopper] #Pedir
         elif 80 < rand <= 90:
-            return 2 #Vender
+            return [3, shopper] #Vender
         elif 90 < rand <= 100:
-            return 3 #Encargo
+            return [4, shopper] #Encargo

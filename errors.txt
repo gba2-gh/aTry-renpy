@@ -2,10 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/functions.rpy", line 82: invalid syntax
-                return flag = 0
-                             ^
-    
+File "game/store.rpy", line 71: u'item_picked' is not a keyword argument or valid child for the for statement.
+    item_picked= random.choice(items_to_choose)
+               ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Jun 03 16:56:29 2020
+Wed Jun 03 18:47:45 2020

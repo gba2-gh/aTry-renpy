@@ -16,8 +16,9 @@ define clients_boy = 0
 define clients_lad = 0
 define clients_gal = 0
 define requests = 0
-define shopper_state = 0
+define shopper_states = []
 define item_picked = 0
+define items_to_choose=[]
 
 
 
@@ -40,8 +41,8 @@ screen store_open:
     text "Prob: [enter_shop_prob_girl]%"
     timer 1 repeat True action  SetVariable( "time_elapsed", time_elapsed +1)
 
-    timer 1 repeat True action  SetVariable( "clients_girl", If(client_enter_shop(100),  clients_girl +1, clients_girl))
-    timer 1.1 repeat True action If(request_petition(clients_girl * 3),  [Show("shop_request", shopper=girl_shopper),SetVariable("requests",  requests +1)] , NullAction() )
+    timer 1 repeat True action  SetVariable( "clients_girl", If(client_enter_shop(enter_shop_prob_girl[1] ),  clients_girl +1, clients_girl))
+    timer 1.1 repeat True action If(request_petition(clients_girl * 3),  [AddToSet(shopper_states, get_shopper_state(girl_shopper)) ,SetVariable("requests",  requests +1)] , NullAction() )
     # timer 1 repeat True action  SetVariable( "clients_boy", If(client_enter_shop(enter_shop_prob_girl[2]),  clients_boy +1, clients_boy))
     # timer 1.2 repeat True action  SetVariable( "requests", If(request_petition(clients_boy * 3),  requests +1, requests))
     # timer 1 repeat True action  SetVariable( "clients_lad", If(client_enter_shop(enter_shop_prob_girl[3]),  clients_lad +1, clients_lad))
@@ -49,31 +50,41 @@ screen store_open:
     # timer 1 repeat True action  SetVariable( "clients_gal", If(client_enter_shop(enter_shop_prob_girl[5]),  clients_gal +1, clients_gal))
     # timer 1.4 repeat True action  SetVariable( "requests", If(request_petition(clients_gal * 3),  requests +1, requests))
 
-
+    use shop_request(shopper_states)
     text "Clients: [clients_girl]" ypos 100 xpos
     text "Clients: [clients_boy]" ypos 100 xpos 300
     text "Clients: [clients_lad]" ypos 100 xpos 600
     text "Clients: [clients_gal]" ypos 100 xpos 900
     text "Requests: [requests]" ypos 200
     text "Timer: [time_elapsed]" xpos 1700
+    text "states: [shopper_states]" ypos 500 xpos 900
 
 
-screen shop_request(shopper):
+screen shop_request(shopper_states):
+    $xcord = 500
+    $ycord =800
+    for state in shopper_states:
+        if state[0] == 1:#comprar
+            $items_to_choose=[]
+            $items_to_choose += search_for_items(state[1],inventory_m1)
+            $items_to_choose += search_for_items(state[1],inventory_m2)
+            if len(items_to_choose) > 0:
+                $item_picked= random.choice(items_to_choose)
+            # else:
+            #     $item_picked= random.choice(items_to_choose)
+            $item = item_picked[0].fname
+            $mesa= item_picked[1]
+            if mesa == 1:
+                textbutton "[item]: [mesa] : buy" xpos 500 ypos 500  action Hide("shop_request")
+            if mesa == 2:
+                textbutton "[item]: [mesa] : buy" xpos 800 ypos 500  action Hide("shop_request")
 
-    $shopper_state= get_shopper_state(shopper)
-
-    if shopper_state == 0:#comprar
-        $item = item_picked[0].fname
-        $mesa= item_picked[1]
-        if mesa == 1:
-            textbutton "[item]: [mesa] : buy" xpos 500 ypos 500  action Hide("shop_request")
-        if mesa == 2:
-            textbutton "[item]: [mesa] : buy" xpos 800 ypos 500  action Hide("shop_request")
-    elif shopper_state == 1:#Pedir
-        textbutton " pedir" xpos 500 ypos 800  action Hide("shop_request")
-    elif shopper_state == 2:#Vender
-        textbutton "vender " xpos 700 ypos 800  action Hide("shop_request")
-    elif shopper_state == 3:#Hacer encargo
-        textbutton "encargo " xpos 900 ypos 800  action Hide("shop_request")
+        if state[0] == 2:#Pedir
+            textbutton "[state[1].name]: pedir" xpos xcord ypos ycord  action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
+        elif state[0] == 3:#Vender
+            textbutton "[state[1].name]:vender " xpos xcord ypos ycord action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
+        elif state[0] == 4:#Hacer encargo
+            textbutton "[state[1].name]:encargo " xpos xcord ypos ycord  action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
+        $xcord +=50
 
 #screen store_buy():

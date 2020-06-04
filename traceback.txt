@@ -1,27 +1,35 @@
 ﻿I'm sorry, but an uncaught exception occurred.
 
 While running game code:
-  File "game/store.rpy", line 32, in script
-    call screen store_open
+  File "game/store.rpy", line 35, in script
+    
   File "renpy/common/000statements.rpy", line 531, in execute_call_screen
     store._return = renpy.call_screen(name, *args, **kwargs)
-  File "game/store.rpy", line 59, in execute
-    screen shop_request(shopper):
-  File "game/store.rpy", line 59, in execute
-    screen shop_request(shopper):
-  File "game/store.rpy", line 81, in execute
-    if flag == 0:
-  File "game/store.rpy", line 82, in execute
-    $item = item_picked[0].fname
-  File "game/store.rpy", line 82, in <module>
-    $item = item_picked[0].fname
-NameError: name 'item_picked' is not defined
+  File "game/store.rpy", line 38, in execute
+    
+  File "game/store.rpy", line 38, in execute
+    
+  File "game/store.rpy", line 53, in execute
+    text "Clients: [clients_girl]" ypos 100 xpos
+  File "game/store.rpy", line 63, in execute
+    $xcord = 500
+  File "game/store.rpy", line 63, in execute
+    $xcord = 500
+  File "game/store.rpy", line 66, in execute
+    if state[0] == 1:#comprar
+  File "game/store.rpy", line 67, in execute
+    $item_to_choose=[]
+  File "game/store.rpy", line 73, in execute
+    $mesa= item_picked[1]
+  File "game/store.rpy", line 73, in <module>
+    $mesa= item_picked[1]
+TypeError: 'int' object has no attribute '__getitem__'
 
 -- Full Traceback ------------------------------------------------------------
 
 Full traceback:
-  File "game/store.rpy", line 32, in script
-    call screen store_open
+  File "game/store.rpy", line 35, in script
+    
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1949, in execute
     self.call("execute")
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\ast.py", line 1937, in call
@@ -52,19 +60,27 @@ Full traceback:
     self.update()
   File "D:\Gamedev\renpy-7.3.5-sdk\renpy\display\screen.py", line 625, in update
     self.screen.function(**self.scope)
-  File "game/store.rpy", line 59, in execute
-    screen shop_request(shopper):
-  File "game/store.rpy", line 59, in execute
-    screen shop_request(shopper):
-  File "game/store.rpy", line 81, in execute
-    if flag == 0:
-  File "game/store.rpy", line 82, in execute
-    $item = item_picked[0].fname
-  File "game/store.rpy", line 82, in <module>
-    $item = item_picked[0].fname
-NameError: name 'item_picked' is not defined
+  File "game/store.rpy", line 38, in execute
+    
+  File "game/store.rpy", line 38, in execute
+    
+  File "game/store.rpy", line 53, in execute
+    text "Clients: [clients_girl]" ypos 100 xpos
+  File "game/store.rpy", line 63, in execute
+    $xcord = 500
+  File "game/store.rpy", line 63, in execute
+    $xcord = 500
+  File "game/store.rpy", line 66, in execute
+    if state[0] == 1:#comprar
+  File "game/store.rpy", line 67, in execute
+    $item_to_choose=[]
+  File "game/store.rpy", line 73, in execute
+    $mesa= item_picked[1]
+  File "game/store.rpy", line 73, in <module>
+    $mesa= item_picked[1]
+TypeError: 'int' object has no attribute '__getitem__'
 
 Windows-7-6.1.7601-SP1
 Ren'Py 7.3.5.606
 aTry 1.0
-Wed Jun 03 16:44:01 2020
+Wed Jun 03 18:50:13 2020
