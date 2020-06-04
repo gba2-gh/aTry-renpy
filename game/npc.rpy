@@ -4,7 +4,7 @@ init -2 python:
     all_shoppers=[]
     class shopper(store.object):
         #nombre, budget, confianza con el vendedor, % preferido de compra, % maximo a aceptar, % minimo a aceptar, turno en que aparece mas seguido,
-        def __init__(self, name, budget = 0, trust = 0.1, pref_hag= 0, max_hag= 0, min_hag= 0, fav_turn= 0, random = 2, fav_items=[], img=""):
+        def __init__(self, name, budget = 0, trust = 0.1, pref_hag= 0, max_hag= 0, min_hag= 0, fav_turn= 0, random = 2, state=0, item_picked="", fav_items=[],  img=""):
             global all_shoppers
             self.name = name
             self.budget = budget
@@ -14,6 +14,8 @@ init -2 python:
             self.min_hag = min_hag
             self.fav_turn = fav_turn
             self.fav_items = fav_items
+            self.state=state
+            self.item_picked = item_picked
             if self not in all_shoppers:
                 all_shoppers.append(self)
 

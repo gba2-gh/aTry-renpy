@@ -2,9 +2,9 @@
 errors listed below, and try again.
 
 
-File "game/store.rpy", line 71: u'item_picked' is not a keyword argument or valid child for the for statement.
-    item_picked= random.choice(items_to_choose)
-               ^
+File "game/store.rpy", line 71: u'remove_inventory_id' is not a keyword argument or valid child for the for statement.
+    remove_inventory_id(state[2][1], state[2][0], 1)
+                       ^
 
 Ren'Py Version: Ren'Py 7.3.5.606
-Wed Jun 03 18:47:45 2020
+Thu Jun 04 09:19:39 2020

@@ -27,6 +27,7 @@ init -2 python:
             self.qty +=plus
 
 
+
 ##############
 #CREAR OBJETOS
 init python:

@@ -24,6 +24,12 @@ init python:
                 if(i[1] <=0):
                     del inv[inv.index(i)]
 
+    def remove_inventory_id(inv_id, item, qty):
+        if inv_id == 1:
+            remove_inventory(inventory_m1, item, qty)
+        elif inv_id == 2:
+            remove_inventory(inventory_m2, item, qty)
+
     def isin_inventory(inv, item):
         for i in inv[1:]:
             if item in i:
@@ -66,24 +72,29 @@ init python:
         for item_i in shopper.fav_items:
             for item_j in inventory[1:]:
                 if item_i == item_j[0]:
-                    items.append([item_j[0],inventory[0]])  #inventory[0] ==id
+                    items.append([item_j[0],inventory[0]])  #inventory[0] ==shelf
 
         return items
 
-    def get_shopper_state(shopper):
+    def get_shopper_state(shopper): #Esta función pasa [estado del npc, tipo de npc y el objeto elegido]
         rand = random.randint(0,100)
         items_to_choose =[]
         if rand <= 70:#compra
-            # items_to_choose += search_for_items(shopper,inventory_m1)
-            # items_to_choose += search_for_items(shopper,inventory_m2)
-            # if len(items_to_choose) > 0:
-            #     item_picked= random.choice(items_to_choose)
-            return [1, shopper] #Comprar
-            # else:
-            #     return [2, shopper]#Pedir
+            items_to_choose += search_for_items(shopper,inventory_m1)
+            items_to_choose += search_for_items(shopper,inventory_m2)
+            #items_to_choose += [[apple, 1], [apple, 2]]
+            if len(items_to_choose) > 0:
+                item_picked= random.choice(items_to_choose)
+                #remove_inventory_id(item_picked[1], item_picked[0], 1)
+                return [1, shopper, item_picked] #Comprar
+            else:
+                return [0]
         elif 70 < rand <= 80:
-            return [2, shopper] #Pedir
+            item_picked =0
+            return [2, shopper, item_picked] #Pedir
         elif 80 < rand <= 90:
-            return [3, shopper] #Vender
+            item_picked=0
+            return [3, shopper, item_picked] #Vender
         elif 90 < rand <= 100:
-            return [4, shopper] #Encargo
+            item_picked=0
+            return [4, shopper, item_picked] #Encargo

@@ -18,7 +18,7 @@ define clients_gal = 0
 define requests = 0
 define shopper_states = []
 define item_picked = 0
-define items_to_choose=[]
+
 
 
 
@@ -57,7 +57,9 @@ screen store_open:
     text "Clients: [clients_gal]" ypos 100 xpos 900
     text "Requests: [requests]" ypos 200
     text "Timer: [time_elapsed]" xpos 1700
-    text "states: [shopper_states]" ypos 500 xpos 900
+    text "states: [shopper_states]" ypos 900
+    text "states: [inventory_m1]" ypos 1000
+
 
 
 screen shop_request(shopper_states):
@@ -65,20 +67,13 @@ screen shop_request(shopper_states):
     $ycord =800
     for state in shopper_states:
         if state[0] == 1:#comprar
-            $items_to_choose=[]
-            $items_to_choose += search_for_items(state[1],inventory_m1)
-            $items_to_choose += search_for_items(state[1],inventory_m2)
-            if len(items_to_choose) > 0:
-                $item_picked= random.choice(items_to_choose)
-            # else:
-            #     $item_picked= random.choice(items_to_choose)
-            $item = item_picked[0].fname
-            $mesa= item_picked[1]
-            if mesa == 1:
-                textbutton "[item]: [mesa] : buy" xpos 500 ypos 500  action Hide("shop_request")
-            if mesa == 2:
-                textbutton "[item]: [mesa] : buy" xpos 800 ypos 500  action Hide("shop_request")
-
+            #$remove_inventory_id(state[2][1], state[2][0], 1)
+            $item_name = state[2][0].fname
+            $shelf= state[2][1]
+            if shelf == 1:
+                textbutton "[item_name]: [shelf] : buy" xpos 500 ypos 500  action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
+            if shelf == 2:
+                textbutton "[item_name]: [shelf] : buy" xpos 800 ypos 500  action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
         if state[0] == 2:#Pedir
             textbutton "[state[1].name]: pedir" xpos xcord ypos ycord  action RemoveFromSet(shopper_states, shopper_states[shopper_states.index(state)])
         elif state[0] == 3:#Vender
